@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 3333;
 const request = require('request');
 const cheerio = require('cheerio');
 const express = require('express');
@@ -23,4 +24,4 @@ server.get('/', (req, res) => {
   });
 });
 
-server.listen(3333);
+server.listen(PORT);

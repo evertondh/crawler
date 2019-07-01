@@ -19,11 +19,12 @@ request('https://www.melhorcambio.com/cotacao/compra/euro/recife', function(err,
   
   for (let i = 0; i < $('.holder-resultados .hover-tip.lista_corretoras .valor').length; i++) {
     if (papelMoeda == $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).text().split(" ")[0].split('R$')[1].replace(',', '.')){
-        corretoras.push($('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.nome-corretora b').eq(0).text())
+        corretoras.push({
+          nome: $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.nome-corretora b').eq(0).text(),
+          url: $('#site_' + i).val() 
+        })
     }
   }
-
-  console.log(corretoras); 
 });
 
 server.get('/', (req, res) => {

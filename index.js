@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const express = require('express');
 
 var server = express();
-var papelMoeda;
+var papelMoeda, corretoras = [];
 server.use(express.json());
 
 request('https://www.melhorcambio.com/cotacao/compra/euro/recife', function(err, res, body){
@@ -15,12 +15,21 @@ request('https://www.melhorcambio.com/cotacao/compra/euro/recife', function(err,
   let $ = cheerio.load(body);
 
   papelMoeda = $('#div-especie h3 span').eq(1).text().replace(',', '.');
+  
+  
+  for (let i = 0; i < $('.holder-resultados .hover-tip.lista_corretoras .valor').length; i++) {
+    if (papelMoeda == $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).text().split(" ")[0].split('R$')[1].replace(',', '.')){
+        corretoras.push($('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.nome-corretora b').eq(0).text())
+    }
+  }
 
+  console.log(corretoras); 
 });
 
 server.get('/', (req, res) => {
   res.json({
-    valor: papelMoeda
+    valor: papelMoeda,
+    corretoras: corretoras
   });
 });
 

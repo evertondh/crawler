@@ -26,7 +26,8 @@ server.get('/:cidade', (req, response) => {
           logo: "https://www.melhorcambio.com" + $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.icon-corretora img').attr('src'),
           url: $('#site_' + i).val(),
           telefone: $('#telefone_' + i).val(),
-          avaliacao: +$('#score_corretora_' + i).val().replace(/,/g, ".")
+          avaliacao: +$('#score_corretora_' + i).val().replace(/,/g, "."),
+          valor: $('#valor_esp_'+i).val()
         })
       }
     }

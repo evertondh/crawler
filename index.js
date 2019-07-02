@@ -23,14 +23,15 @@ server.get('/:cidade', (req, response) => {
       if (papelMoeda == $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).text().split('R$')[1].substr(0, 5).replace(/\s/g, '').replace(',', '.')) {
         corretoras.push({
           nome: $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.nome-corretora b').eq(0).text(),
+          logo: "https://www.melhorcambio.com" + $("#src_img_score_" + i).val(),
           url: $('#site_' + i).val(),
           telefone: $('#telefone_' + i).val(),
           avaliacao: +$('#score_corretora_' + i).val().replace(/,/g, ".")
         })
       }
     }
-    
-    corretoras = corretoras.sort((cor1, cor2)=>{
+
+    corretoras.sort((cor1, cor2)=>{
       return cor2.avaliacao - cor1.avaliacao
     })
 

@@ -25,10 +25,15 @@ server.get('/:cidade', (req, response) => {
           nome: $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.nome-corretora b').eq(0).text(),
           url: $('#site_' + i).val(),
           telefone: $('#telefone_' + i).val(),
-          avaliacao: $('#score_corretora_' + i).val()
+          avaliacao: +$('#score_corretora_' + i).val().replace(/,/g, ".")
         })
       }
     }
+    
+    corretoras = corretoras.sort((cor1, cor2)=>{
+      return cor2.avaliacao - cor1.avaliacao
+    })
+
     response.json({
       valor: papelMoeda,
       corretoras: corretoras

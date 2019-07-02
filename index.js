@@ -22,7 +22,7 @@ request('https://www.melhorcambio.com/cotacao/compra/euro/recife', function(err,
           nome: $('.holder-resultados .hover-tip.lista_corretoras .valor').eq(i).parent().find('.nome-corretora b').eq(0).text(),
           url: $('#site_' + i).val(),
           telefone: $('#telefone_' + i).val(),
-          score: $('#score_corretora_' + i).val()
+          avaliacao: $('#score_corretora_' + i).val()
         })
     }
   }

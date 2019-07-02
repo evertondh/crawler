@@ -27,12 +27,12 @@ server.get('/:cidade', (req, response) => {
           url: $('#site_' + i).val(),
           telefone: $('#telefone_' + i).val(),
           avaliacao: +$('#score_corretora_' + i).val().replace(/,/g, "."),
-          valor: $('#valor_esp_'+i).val()
+          valor: +parseFloat($('#valor_esp_' + i).val()).toFixed(2)
         })
       }
     }
 
-    corretoras.sort((cor1, cor2)=>{
+    corretoras.sort((cor1, cor2) => {
       return cor2.avaliacao - cor1.avaliacao
     })
 
